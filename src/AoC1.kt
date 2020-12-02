@@ -2,18 +2,18 @@ import java.io.File
 
 fun main() {
     println("Starting Day 1 A Test 1")
-    calculatePartA(2020, "Input/2020_1_A_test1")
+    calculateDay1PartA(2020, "Input/2020_1_A_test1")
     println("Starting Day 1 A Real")
-    calculatePartA(2020, "Input/2020_1_A")
+    calculateDay1PartA(2020, "Input/2020_1_A")
 
     println("Starting Day 1 B Test 1")
-    calculatePartB(2020, "Input/2020_1_A_test1")
+    calculateDay1PartB(2020, "Input/2020_1_A_test1")
     println("Starting Day 1 B Real")
-    calculatePartB(2020, "Input/2020_1_A")
+    calculateDay1PartB(2020, "Input/2020_1_A")
 }
 
-fun calculatePartA(targetNum: Int, File: String, start: Int = 0): Information2D {
-    val readData = readData(File)
+fun calculateDay1PartA(targetNum: Int, File: String, start: Int = 0): Information2D {
+    val readData = readDay1Data(File)
     val sorted = readData.sorted()
 
     var lowIndex = start
@@ -37,8 +37,8 @@ fun calculatePartA(targetNum: Int, File: String, start: Int = 0): Information2D 
 
 }
 
-fun calculatePartB(targetNum: Int, File: String): Information2D {
-    val readData = readData(File)
+fun calculateDay1PartB(targetNum: Int, File: String): Information2D {
+    val readData = readDay1Data(File)
     val sorted = readData.sorted()
 
     var lowIndex = 0
@@ -47,7 +47,7 @@ fun calculatePartB(targetNum: Int, File: String): Information2D {
 
     while (sorted[lowIndex] + sorted[middleIndex] + sorted[highIndex] != targetNum) {
         val missingSum = targetNum - sorted[lowIndex]
-        val calculatePartA = calculatePartA(missingSum, File, lowIndex)
+        val calculatePartA = calculateDay1PartA(missingSum, File, lowIndex)
 
         if(calculatePartA.highIndex > calculatePartA.lowIndex){
             middleIndex = calculatePartA.lowIndex
@@ -68,7 +68,7 @@ fun calculatePartB(targetNum: Int, File: String): Information2D {
     return Information2D(lowIndex, highIndex)
 }
 
-fun readData(input: String): List<Int> {
+fun readDay1Data(input: String): List<Int> {
     val myList = mutableListOf<Int>()
     File(localdir + input).forEachLine { myList.add(it.toInt()) }
     return myList
